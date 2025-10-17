@@ -17,8 +17,8 @@ export default function App() {
       {/* Navbar visible en todas las páginas */}
       <Navbar />
 
-      {/* Contenido principal */}
-      <main className="flex-grow p-4">
+        {/* Contenido principal */}
+      <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/quienes-somos" element={<QuienesSomos />} />

@@ -27,57 +27,55 @@ export default function Home() {
   ];
 
   return (
-    <div className="home-container">
-      <main className="home-main">
-        {/* Hero Section */}
-        <section className="hero-section">
-          <div className="hero-bg">
-            <div className="hero-content">
-              <h1>Innovación 3D para la medicina del futuro</h1>
-              <h2>Precisión y calidad en cada impresión</h2>
-            </div>
-            <div className="hero-buttons">
-              <button className="btn-primary">Solicitar una cotización</button>
-              <button className="btn-secondary">Ver nuestros proyectos</button>
-            </div>
+    <main className="home-container">
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-bg">
+          <div className="hero-content">
+            <h1>Innovación 3D para la medicina del futuro</h1>
+            <h2>Precisión y calidad en cada impresión</h2>
           </div>
-        </section>
-
-        {/* Quiénes Somos */}
-        <section id="quienes-somos" className="section">
-          <div className="section-content">
-            <h2>Nuestro Compromiso con la Innovación Médica</h2>
-            <p>
-              En SIGPe, nos dedicamos a impulsar la vanguardia de la tecnología médica a través de la impresión 3D.
-              Nuestra misión es proporcionar a investigadores, clínicos y estudiantes las herramientas más avanzadas
-              para materializar sus proyectos, desde modelos anatómicos de alta precisión hasta prototipos de
-              dispositivos médicos innovadores.
-            </p>
-            <div className="section-btn">
-              <button className="btn-primary">Saber más</button>
-            </div>
+          <div className="hero-buttons">
+            <button className="btn-primary">Solicitar una cotización</button>
+            <button className="btn-secondary">Ver nuestros proyectos</button>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Materiales */}
-        <section id="materiales" className="section materiales-section">
-          <div className="section-content">
-            <h2>Materiales de Alta Calidad</h2>
-            <div className="materiales-grid">
-              {materiales.map((item) => (
-                <div key={item.title} className="material-card">
-                  <img src={item.img} alt={item.title} />
-                  <div className="material-info">
-                    <h3>{item.title}</h3>
-                    <p>{item.desc}</p>
-                    <button className="btn-material">Conoce Más</button>
-                  </div>
+      {/* Quiénes Somos */}
+      <section id="quienes-somos" className="section">
+        <div className="section-content">
+          <h2>Nuestro Compromiso con la Innovación Médica</h2>
+          <p>
+            En SIGPe, nos dedicamos a impulsar la vanguardia de la tecnología médica a través de la impresión 3D.
+            Nuestra misión es proporcionar a investigadores, clínicos y estudiantes las herramientas más avanzadas
+            para materializar sus proyectos, desde modelos anatómicos de alta precisión hasta prototipos de
+            dispositivos médicos innovadores.
+          </p>
+          <div className="section-btn">
+            <button className="btn-primary">Saber más</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Materiales */}
+      <section id="materiales" className="section materiales-section">
+        <div className="section-content">
+          <h2>Materiales de Alta Calidad</h2>
+          <div className="materiales-grid">
+            {materiales.map((item) => (
+              <div key={item.title} className="material-card">
+                <img src={item.img} alt={item.title} />
+                <div className="material-info">
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                  <button className="btn-material">Conoce Más</button>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </section>
-      </main>
-    </div>
+        </div>
+      </section>
+    </main>
   );
 }
