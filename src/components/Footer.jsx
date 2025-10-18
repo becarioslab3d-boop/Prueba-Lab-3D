@@ -33,7 +33,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© 2024 SIGPe. Todos los derechos reservados.</p>
+        <p>© 2025 SIGPe. Todos los derechos reservados.</p>
       </div>
     </footer>
   );
