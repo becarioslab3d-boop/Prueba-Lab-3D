@@ -1,5 +1,8 @@
 /* src/styles/Dashboard.css */
 
+/* =================================
+   Contenedor Principal
+   ================================= */
 .dashboard-container {
   min-height: 100vh;
   display: flex;
@@ -7,60 +10,37 @@
   background-color: #f3f4f6;
 }
 
-/* Header */
-.dashboard-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
+.dashboard-main {
+  padding: 1.5rem 1rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.header-icon {
-  color: #2563eb;
-  font-size: 1.875rem;
-}
-
-.header-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  letter-spacing: -0.025em;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
+/* =================================
+   Botones y Elementos Comunes
+   ================================= */
 .btn-new-order {
-  display: none;
-  min-width: 84px;
+  min-width: 120px;
+  padding: 0 1.5rem;
   height: 2.5rem;
-  padding: 0 1rem;
-  background-color: #2563eb;
+  background-color: #54abe0; /* Color solicitado */
   color: white;
-  font-size: 0.875rem;
-  font-weight: bold;
-  border-radius: 0.5rem;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-new-order:hover {
-  background-color: #1d4ed8;
+  background-color: #4a99c7; /* Tono más oscuro para hover */
 }
 
 .btn-notifications {
@@ -97,48 +77,9 @@
   justify-content: center;
 }
 
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.user-avatar {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-}
-
-.user-details {
-  display: none;
-  flex-direction: column;
-  text-align: right;
-}
-
-.user-name {
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.user-role {
-  font-size: 0.75rem;
-  color: #6b7280;
-}
-
-/* Main Content */
-.dashboard-main {
-  padding: 1.5rem 1rem;
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* KPIs Section */
+/* =================================
+   Sección de KPIs
+   ================================= */
 .kpis-section {
   display: grid;
   grid-template-columns: 1fr;
@@ -167,7 +108,9 @@
   color: #111827;
 }
 
-/* Filters Section */
+/* =================================
+   Sección de Filtros
+   ================================= */
 .filters-section {
   display: flex;
   flex-direction: column;
@@ -208,7 +151,7 @@
 .filter-buttons {
   display: flex;
   gap: 0.75rem;
-  overflow-x: auto;
+  overflow-x: visible;
   padding-bottom: 0.5rem;
 }
 
@@ -219,26 +162,24 @@
 .filter-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  height: 3rem;
-  padding: 0 1rem;
-  background-color: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+  gap: 0.25rem;
+  cursor: pointer;
+  background: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 12px;
   font-size: 0.875rem;
   font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.3s;
+  transition: background 0.3s;
 }
 
 .filter-btn:hover {
-  background-color: #f9fafb;
+  background: #e2e8f0;
 }
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: calc(100% - 1rem);
   left: 0;
   z-index: 10;
   min-width: 12rem;
@@ -269,17 +210,9 @@
   border-bottom: 1px solid #f3f4f6;
 }
 
-.clear-filters-btn {
-  background-color: #fee2e2;
-  border-color: #fecaca;
-  color: #991b1b;
-}
-
-.clear-filters-btn:hover {
-  background-color: #fecaca;
-}
-
-/* Table Section */
+/* =================================
+   Sección de la Tabla
+   ================================= */
 .table-section {
   background-color: white;
   border: 1px solid #e5e7eb;
@@ -328,6 +261,17 @@
   text-align: center;
 }
 
+.link-details {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.link-details:hover {
+  color: #1d4ed8;
+}
+
+/* Badges de Estado y Urgencia */
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -367,17 +311,9 @@
   font-size: 1.25rem;
 }
 
-.link-details {
-  color: #2563eb;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.link-details:hover {
-  color: #1d4ed8;
-}
-
-/* Pagination */
+/* =================================
+   Paginación
+   ================================= */
 .pagination-container {
   display: flex;
   align-items: center;
@@ -433,15 +369,13 @@
   color: #2563eb;
 }
 
-/* Responsive Design */
+/* =================================
+   Diseño Responsivo (Media Queries)
+   ================================= */
 @media (min-width: 640px) {
-  .dashboard-header {
+  .dashboard-main {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  }
-
-  .user-details {
-    display: flex;
   }
 
   .kpis-section {
@@ -462,15 +396,6 @@
 }
 
 @media (min-width: 768px) {
-  .dashboard-header {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  .btn-new-order {
-    display: flex;
-  }
-
   .dashboard-main {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -486,4 +411,75 @@
   .kpis-section {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+.filters-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+
+
+.search-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 400px; /* opcional, ajustar al diseño */
+  gap: 0.5rem;
+}
+
+.search-input {
+  flex-grow: 1;
+  height: 3rem;
+  padding: 0 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.btn-search {
+  height: 3rem;
+  padding: 0 1rem;
+  background-color: #54abe0;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.btn-search:hover {
+  background-color: #4a99c7;
+}
+
+
+/* Badge de Urgencia */
+.urgency-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: bold; /* texto en negrita */
+}
+
+.urgency-urgent {
+  background-color: rgba(239, 68, 68, 0.1); /* rojo suave */
+  color: #b91c1c; /* rojo intenso */
+}
+
+.urgency-normal {
+  background-color: rgba(16, 185, 129, 0.1); /* verde suave */
+  color: #047857; /* verde intenso */
 }

@@ -1,6 +1,9 @@
 // src/pages/Dashboard.jsx
 import React, { useState } from "react";
 import "../styles/Dashboard.css";
+import flechaIcon from "../assets/flecha.png";
+import flechaDerecha from "../assets/flecha-derecha.png";
+import flechaIzquierda from "../assets/flecha-izquierda.png";
 
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,7 +37,6 @@ const Dashboard = () => {
       status: "En Proceso",
       statusColor: "process",
       urgent: false,
-      doctor: "Dr. García"
     },
     {
       id: "#12346",
@@ -43,7 +45,6 @@ const Dashboard = () => {
       status: "Completado",
       statusColor: "completed",
       urgent: false,
-      doctor: "Dr. Martínez"
     },
     {
       id: "#12347",
@@ -51,8 +52,7 @@ const Dashboard = () => {
       date: "2023-10-24",
       status: "Pendiente",
       statusColor: "pending",
-      urgent: false,
-      doctor: "Dr. Rodríguez"
+      urgent: true,
     },
     {
       id: "#12348",
@@ -61,7 +61,6 @@ const Dashboard = () => {
       status: "Cancelado",
       statusColor: "cancelled",
       urgent: false,
-      doctor: "Dr. Sánchez"
     },
     {
       id: "#12349",
@@ -70,14 +69,14 @@ const Dashboard = () => {
       status: "Urgente",
       statusColor: "urgent",
       urgent: true,
-      doctor: "Dr. Torres"
     }
   ];
+
 
   // Filtrar pedidos basándose en los filtros seleccionados y búsqueda
   const filteredOrders = orders.filter((order) => {
     // Filtro de búsqueda
-    const matchesSearch = 
+    const matchesSearch =
       order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.patient.toLowerCase().includes(searchTerm.toLowerCase());
 
@@ -85,7 +84,7 @@ const Dashboard = () => {
     const matchesStatus = !filters.status || order.status === filters.status;
 
     // Filtro de urgencia
-    const matchesUrgency = !filters.urgency || 
+    const matchesUrgency = !filters.urgency ||
       (filters.urgency === 'Urgente' && order.urgent) ||
       (filters.urgency === 'Normal' && !order.urgent);
 
@@ -94,33 +93,10 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Header */}
-      <header className="dashboard-header">
-        <div className="header-left">
-          <span className="material-symbols-outlined header-icon">biotech</span>
-          <h1 className="header-title">SIGPe</h1>
-        </div>
-        <div className="header-right">
-          <button className="btn-new-order">Nuevo Pedido</button>
-          <button className="btn-notifications">
-            <span className="material-symbols-outlined">notifications</span>
-            <span className="notification-badge">3</span>
-          </button>
-          <div className="user-info">
-            <div 
-              className="user-avatar"
-              style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBdZMKvuUhyTcHg05zn-WThFjEKPY_Ss4V3b25IVUARSEtYCDpyv52EaQhXAaM0jnsYQOisHCkVhBQjUABNMDhwnWd-4Cga0m9xdiCHTPlznkw1o9P8neQBkCc3BXLOPSIlBtB4Fx39RN-UN6MM8FDoYFOJlVHwtKg4XN6yKNfwyaJd00tdpekzABlwCPdapp_rNugjoJXzyTZVXUiZOZYKVcfwbHFI5H3krznlYYXQbpAWXN4E-Xep8o4StIJkWIU5ifbHdG8I0to")'}}
-            />
-            <div className="user-details">
-              <p className="user-name">Dr. Elena Vasquez</p>
-              <p className="user-role">Admin</p>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Main Content */}
       <main className="dashboard-main">
+
         {/* KPIs Section */}
         <section className="kpis-section">
           <div className="kpi-card">
@@ -143,24 +119,40 @@ const Dashboard = () => {
 
         {/* Filters Section */}
         <section className="filters-section">
-          <div className="search-container">
-            <span className="material-symbols-outlined search-icon">search</span>
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Buscar por ID de pedido, nombre de paciente..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+          <div className="filters-top-row">
+            <div className="search-wrapper">
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Buscar por ID de pedido, nombre de paciente..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button
+                className="btn-search"
+                onClick={() => console.log("Buscar:", searchTerm)}
+              >
+                Buscar
+              </button>
+            </div>
+
+
+
+            <button className="btn-new-order">Nuevo Pedido</button>
           </div>
+
           <div className="filter-buttons">
             <div className="filter-dropdown">
-              <button 
-                className="filter-btn"
+              <button
+                className={`filter-btn ${openFilter === 'status' ? 'open' : ''}`}
                 onClick={() => toggleFilter('status')}
               >
                 <span>{filters.status || "Estado"}</span>
-                <span className="material-symbols-outlined">expand_more</span>
+                <img
+                  src={flechaIcon}
+                  alt="flecha"
+                  className="arrow-icon"
+                />
               </button>
               {openFilter === 'status' && (
                 <div className="dropdown-menu">
@@ -178,12 +170,16 @@ const Dashboard = () => {
             </div>
 
             <div className="filter-dropdown">
-              <button 
-                className="filter-btn"
+              <button
+                className={`filter-btn ${openFilter === 'date' ? 'open' : ''}`}
                 onClick={() => toggleFilter('date')}
               >
                 <span>{filters.date || "Fecha"}</span>
-                <span className="material-symbols-outlined">expand_more</span>
+                <img
+                  src={flechaIcon}
+                  alt="flecha"
+                  className="arrow-icon"
+                />
               </button>
               {openFilter === 'date' && (
                 <div className="dropdown-menu">
@@ -201,12 +197,16 @@ const Dashboard = () => {
             </div>
 
             <div className="filter-dropdown">
-              <button 
-                className="filter-btn"
+              <button
+                className={`filter-btn ${openFilter === 'urgency' ? 'open' : ''}`}
                 onClick={() => toggleFilter('urgency')}
               >
                 <span>{filters.urgency || "Urgencia"}</span>
-                <span className="material-symbols-outlined">expand_more</span>
+                <img
+                  src={flechaIcon}
+                  alt="flecha"
+                  className="arrow-icon"
+                />
               </button>
               {openFilter === 'urgency' && (
                 <div className="dropdown-menu">
@@ -225,6 +225,7 @@ const Dashboard = () => {
           </div>
         </section>
 
+
         {/* Table Section */}
         <section className="table-section">
           <div className="table-container">
@@ -236,8 +237,7 @@ const Dashboard = () => {
                   <th>Fecha Solicitud</th>
                   <th>Estado</th>
                   <th>Urgencia</th>
-                  <th>Doctor</th>
-                  <th>Acciones</th>
+                  <th>Acciones</th> {/* Quitamos Doctor */}
                 </tr>
               </thead>
               <tbody>
@@ -252,11 +252,10 @@ const Dashboard = () => {
                       </span>
                     </td>
                     <td className="text-center">
-                      {order.urgent && (
-                        <span className="material-symbols-outlined urgent-icon">bolt</span>
-                      )}
+                      <span className={`urgency-badge ${order.urgent ? "urgency-urgent" : "urgency-normal"}`}>
+                        {order.urgent ? "Urgente" : "Normal"}
+                      </span>
                     </td>
-                    <td>{order.doctor}</td>
                     <td>
                       <a href="#" className="link-details">Ver detalles</a>
                     </td>
@@ -264,6 +263,7 @@ const Dashboard = () => {
                 ))}
               </tbody>
             </table>
+
           </div>
 
           {/* Pagination */}
@@ -277,13 +277,13 @@ const Dashboard = () => {
             </div>
             <nav className="pagination-nav">
               <button className="pagination-btn">
-                <span className="material-symbols-outlined">chevron_left</span>
+                <img src={flechaIzquierda} alt="Anterior" className="pagination-arrow" />
               </button>
               <button className="pagination-btn active">1</button>
               <button className="pagination-btn">2</button>
               <button className="pagination-btn">3</button>
               <button className="pagination-btn">
-                <span className="material-symbols-outlined">chevron_right</span>
+                <img src={flechaDerecha} alt="Anterior" className="pagination-arrow" />
               </button>
             </nav>
           </div>
